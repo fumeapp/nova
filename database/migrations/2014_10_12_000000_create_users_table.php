@@ -19,8 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('name')->nullable();
             $table->string('avatar', 1000)->nullable();
-            $table->string('stripe')->nullable();
-            $table->boolean('is_sub')->default(false);
+            $table->json('payload');
             $table->timestamps();
         });
 
@@ -29,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->string('avatar')->nullable();
             $table->string('name');
-            $table->text('payload');
+            $table->json('payload');
             $table->timestamps();
         });
     }

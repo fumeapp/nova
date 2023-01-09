@@ -17,7 +17,6 @@ use Illuminate\Support\Carbon;
  * @property array $payload
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @method static Builder|Provider newModelQuery()
  * @method static Builder|Provider newQuery()
  * @method static Builder|Provider query()

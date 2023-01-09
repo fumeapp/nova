@@ -39,7 +39,6 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $providers_count
  * @property-read Collection|Session[] $sessions
  * @property-read int|null $sessions_count
- *
  * @method static UserFactory factory(...$parameters)
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -53,6 +52,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereStripe($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property array $payload
+ * @method static Builder|User wherePayload($value)
  */
 class User extends Authenticatable
 {
@@ -69,7 +70,7 @@ class User extends Authenticatable
 
     protected $appends = ['first_name', 'is_trial'];
 
-    protected $casts = ['is_sub' => 'boolean'];
+    protected $casts = ['is_sub' => 'boolean', 'payload' => 'array'];
 
     public array $interfaces = [
         'location' => [

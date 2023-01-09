@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Provider;
 use App\Models\User;
+use App\Services\FileService;
+use Exception;
+use Laravel\Socialite\Two\User as SocialiteUser;
 use App\Notifications\LoginAttempt;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Laravel\Socialite\Facades\Socialite;
+use stdClass;
 
 class AuthController extends Controller
 {
@@ -50,9 +54,10 @@ class AuthController extends Controller
     /**
      * Callback hit by the provider to verify user
      *
-     * @param  string  $provider
-     * @param  Request  $request
+     * @param string $provider
+     * @param Request $request
      * @return Response
+     * @throws Exception
      */
     public function callback(string $provider, Request $request): Response
     {
@@ -64,43 +69,56 @@ class AuthController extends Controller
 
         $user = $this->oaHandle($oaUser, $provider);
 
-        /** @var User $user */
         auth()->login($user, $provider);
 
         return $this->response($provider);
     }
 
+
     /**
      * Handle the login/creation process of a user
-     *
-     * @param  mixed  $oaUser
-     * @param  string  $provider
+     * @param User|SocialiteUser|stdClass $oaUser
+     * @param string $provider
      * @return User
+     * @throws Exception
      */
-    private function oaHandle($oaUser, string $provider): User
+    private function oaHandle(User|SocialiteUser|stdClass $oaUser, string $provider): User
     {
-        if (! $user = User::where('email', $oaUser->email)->first()) {
+        $avatar = $oaUser->picture ?? $oaUser->avatar_original ?? $oaUser->avatar;
+        $avatar = $avatar === '' ? null : $avatar;
+        $stored = null;
+        if ($provider === 'facebook') {
+            $avatar = $oaUser->avatar_original . '&access_token=' . $oaUser->token;
+        }
+        if (!$user = User::where('email', $oaUser->email)->first()) {
+            $stored = $avatar ? FileService::store($avatar, 'image/jpeg') : null;
             $user = $this->createUser(
                 $provider,
                 $oaUser->name,
                 $oaUser->email,
-                $oaUser->picture ?? $oaUser->avatar_original ?? $oaUser->avatar,
-                (array) $oaUser
+                $stored,
+                (array)$oaUser
             );
         }
 
-        if ($user->avatar === null) {
-            $user->avatar = $oaUser->picture ?? $oaUser->avatar_original ?? $oaUser->avatar;
+        if ($user->avatar === null && $avatar !== null) {
+            if (!$stored) {
+                $stored = FileService::store($avatar, 'image/jpeg');
+            }
+            $user->avatar = $stored;
             $user->save();
         }
 
-        if (! $user->providers->where('name', $provider)->first()) {
+        if (!$user->providers->where('name', $provider)->first()) {
+            if (!$stored && $avatar) {
+                $stored = FileService::store($avatar, 'image/jpeg');
+            }
             Provider::create(
                 [
                     'user_id' => $user->id,
                     'name' => $provider,
-                    'avatar' => $oaUser->picture ?? $oaUser->avatar_original ?? $oaUser->avatar,
-                    'payload' => (array) $oaUser,
+                    'avatar' => $stored,
+                    'payload' => (array)$oaUser,
                 ]
             );
         }
@@ -137,6 +155,7 @@ class AuthController extends Controller
             'name' => $name,
             'email' => $email,
             'avatar' => $avatar,
+            'payload' => [],
         ]);
         Provider::create([
             'user_id' => $user->id,
