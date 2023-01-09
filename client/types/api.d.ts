@@ -7,6 +7,7 @@ declare global {
       type: 'success' | 'failure'
       data: unknown
     }
+    export type Me = Modify<api.MetApiResponse, { data: models.User }>
 
     export interface MetApiResults {
       benchmark: number

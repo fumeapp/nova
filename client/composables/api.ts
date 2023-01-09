@@ -19,7 +19,7 @@ export const useApi = () => {
       /*
       echoConfig: {
         pusherAppKey: config.public.pusherAppKey,
-        pusheAppCluster: config.public.pusherAppCluster,
+        pusherAppCluster: config.public.pusherAppCluster,
       },
       */
     }, $toast)

@@ -29,7 +29,6 @@ export interface AuthConfig {
 export interface EchoConfig {
   pusherAppKey: string
   pusherAppCluster: string
-
 }
 
 export interface LoginAction {
@@ -143,7 +142,7 @@ export default class Api {
 
   public async setUser(): Promise<void> {
     try {
-      const result = await $fetch<api.MetApiResponse & { data: models.User }>('/me', this.fetchOptions())
+      const result = await $fetch<api.Me>('/me', this.fetchOptions())
       Object.assign(this.$user, result.data)
       this.setEcho()
     } catch (e) {

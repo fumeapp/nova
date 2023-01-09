@@ -30,7 +30,6 @@ use Illuminate\Support\Carbon;
  * @property-read string $first_name
  * @property-read bool $has_active_session
  * @property-read string $initials
- * @property-read bool $is_trial
  * @property-read array $location
  * @property-read Session $session
  * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
@@ -68,7 +67,7 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
-    protected $appends = ['first_name', 'is_trial'];
+    protected $appends = ['first_name'];
 
     protected $casts = ['is_sub' => 'boolean', 'payload' => 'array'];
 
@@ -83,11 +82,6 @@ class User extends Authenticatable
             'name' => 'api.Sessions',
         ],
     ];
-
-    public function getIsTrialAttribute(): bool
-    {
-        return Carbon::now()->diffInDays($this->created_at) < 8;
-    }
 
     public function getFirstNameAttribute(): string
     {
