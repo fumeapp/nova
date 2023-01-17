@@ -78,8 +78,9 @@ export default defineNuxtConfig({
   components: [
     '~/components',
     '~/components/contact',
-    '~/components/layout',
+    '~/components/form',
     '~/components/header',
+    '~/components/layout',
     '~/components/transition',
   ],
 

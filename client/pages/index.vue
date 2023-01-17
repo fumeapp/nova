@@ -1,11 +1,12 @@
-<script setup lang="ts">
-import { PushButton } from 'tailvue'
-const { setCrumbs } = useCrumbs()
-setCrumbs([ { name: 'Home', to: '/' }])
+<script lang="ts">
+import { useDark } from '@vueuse/core'
+definePageMeta({layout: 'blank'})
+const isDark = useDark()
 </script>
 
 <template>
-  <div class="mx-auto container p-2 lg:p-8 flex flex-col">
-    this is pages/index.vue
+  <div class="flex flex-col items-center space-y-8 w-full">
+    <img src="/nova.png" class="w-32 h-32 rounded-lg" alt="Nova Logo">
+    <login-form :destroyed="() => {}" class="w-full max-w-md" />
   </div>
 </template>
