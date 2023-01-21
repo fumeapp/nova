@@ -12,6 +12,7 @@ export interface BreadCrumb {
   name: string
   to?: RouteLocationRaw
   icon?: string
+  image?: string
 }
 
 export interface UserLogin {

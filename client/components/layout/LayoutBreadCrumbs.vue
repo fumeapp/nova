@@ -1,12 +1,17 @@
 <script lang="ts" setup>
 import { PushButton } from 'tailvue'
 const { list, actions } = useCrumbs()
+defineProps({nopadding: {type: Boolean, default: false}})
 </script>
 
 <template>
-  <div>
-    <nav class="flex justify-between px-4 sm:px-6 border-b border-gray-300 dark:border-gray-700 lg:border-0" aria-label="Breadcrumb">
-      <client-only>
+  <div class="flex flex-col flex-1">
+    <client-only>
+      <nav
+        class="md:flex justify-between px-4 sm:px-6 border-b border-gray-300 dark:border-gray-700 lg:border-0"
+        aria-label="Breadcrumb"
+        :class="{'hidden': list.length === 0}"
+      >
         <ol class="flex items-center space-x-4 py-3">
           <transition-group
             mode="out-in"
@@ -32,12 +37,14 @@ const { list, actions } = useCrumbs()
                 <router-link v-if="crumb && crumb.to" :to="crumb.to" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                   <div class="flex items-center space-x-2">
                     <icon v-if="crumb.icon" :icon="crumb.icon" class="w-5 h-5" />
-                    <span> {{ crumb.name }} </span>
+                    <img v-if="crumb.image" :src="crumb.image" class="w-5 h-5 rounded-full">
+                    <span class="whitespace-nowrap"> {{ crumb.name }} </span>
                   </div>
                 </router-link>
                 <span v-else class="ml-4 text-sm font-medium text-gray-500">
                   <div class="flex items-center space-x-2">
                     <icon v-if="crumb.icon" :icon="crumb.icon" class="w-5 h-5" />
+                    <img v-if="crumb.image" :src="crumb.image" class="w-5 h-5 rounded-full">
                     <span> {{ crumb.name }} </span>
                   </div>
                 </span>
@@ -45,22 +52,24 @@ const { list, actions } = useCrumbs()
             </li>
           </transition-group>
         </ol>
-      </client-only>
-      <div v-if="actions" class="py-2">
-        <router-link
-          v-for="action in actions"
-          :key="action.name"
-          :to="action.to"
-          class="flex text-xs"
-        >
-          <push-button size="xs">
-            <icon :icon="action.icon" class="w-4 h-4 mr-2.5" />
-            {{ action.name }}
-          </push-button>
-        </router-link>
-      </div>
-    </nav>
-    <div class="my-12 md:mx-12">
+        <div v-if="actions.length > 0" class="space-y-2 md:space-y-0 py-2 lg:pt-4 md:flex md:space-x-4">
+          <nuxt-link
+            v-for="action in actions"
+            :key="action.name"
+            :to="action.to"
+            class="flex text-xs"
+          >
+            <push-button size="xs" class="w-full">
+              <div class="flex flex-1 items-center justify-center space-x-2">
+                <icon :icon="action.icon" class="w-4 h-4" />
+                <span> {{ action.name }} </span>
+              </div>
+            </push-button>
+          </nuxt-link>
+        </div>
+      </nav>
+    </client-only>
+    <div :class="{'my-12 sm:px-6': !nopadding}" class="flex-1">
       <slot />
     </div>
   </div>

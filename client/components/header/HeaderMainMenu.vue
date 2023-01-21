@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const props = defineProps({ mobile: Boolean })
-const { mainMenu } = useMenu(useApi())
+const { mainMenu, isEmployee, employeeMenu } = useMenu(useApi())
 const emit = defineEmits(['click'])
 </script>
 

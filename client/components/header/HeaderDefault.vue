@@ -16,7 +16,7 @@ defineProps({nopadding: {type: Boolean, default: false}})
         <div class="absolute inset-y-0 left-0 lg:static lg:flex-shrink-0">
           <router-link
             to="/home"
-            class="flex items-center justify-center text-white h-16 w-16 lg:w-20 bg-gradient-to-br from-logo-a to-logo-b"
+            class="flex items-center justify-center text-white h-16 w-16 lg:w-20 bg-gradient-to-br from-swatch3 to-swatch4"
           >
             <header-logo class="h-8 w-auto text-white" />
           </router-link>
@@ -44,12 +44,10 @@ defineProps({nopadding: {type: Boolean, default: false}})
         <!-- Desktop nav area -->
         <div class="hidden lg:min-w-0 lg:flex-1 lg:flex lg:items-center lg:justify-between">
           <div class="min-w-0">
-            <!--<header-search />-->
+            <header-search />
           </div>
           <div class="ml-10 pr-4 flex-shrink-0 flex items-end justify-end flex-1">
             <div class="flex-1 flex items-center justify-end space-x-6">
-              <!--<header-teams />-->
-              <!--<header-alerts v-if="loggedIn === true" />-->
               <header-dark-mode id="darkModeIconDesktop" />
               <header-profile />
             </div>
