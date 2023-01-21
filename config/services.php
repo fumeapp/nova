@@ -30,9 +30,9 @@ return [
     ],
 
     'ses' => [
-        'key' => env('AMAZON_KEY'),
-        'secret' => env('AMAZON_SECRET'),
-        'region' => env('AMAZON_DEFAULT_REGION', 'us-east-1'),
+        'key' => env('AWSS_ACESS_KEY_ID'),
+        'secret' => env('AWSS_SECRET_ACCESS_KEY'),
+        'region' => env('AWSS_DEFAULT_REGION', 'us-east-1'),
     ],
 
 ];

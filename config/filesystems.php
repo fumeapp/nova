@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 's3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -61,8 +61,8 @@ return [
             'secret' => env('AWSS_SECRET_ACCESS_KEY'),
             'region' => env('AWSS_DEFAULT_REGION'),
             'bucket' => env('AWSS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
+            'url' => env('AWSS_URL'),
+            'endpoint' => env('AWSS_ENDPOINT'),
         ],
 
     ],

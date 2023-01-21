@@ -1,8 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-    <header-bar />
-    <LayoutBreadCrumbs>
+  <div>
+    <header-default>
       <slot />
-    </LayoutBreadCrumbs>
+    </header-default>
   </div>
 </template>

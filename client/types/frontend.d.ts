@@ -1,3 +1,12 @@
+export interface MenuItem {
+  icon?: string
+  name: string
+  label?: string
+  to?: string
+  names?: string[]
+  items?: SubMenuItem[]
+  footer?: boolean
+}
 
 export interface BreadCrumb {
   name: string

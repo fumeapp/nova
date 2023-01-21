@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { PushButton } from 'tailvue'
 </script>
 
 <template>
@@ -11,7 +12,14 @@
             <span class="font-semibold text-xl">nova</span>
           </div>
           <div class="hidden ml-10 space-x-8 lg:block">
-            menu area
+            <nuxt-link to="/item">
+              <push-button>
+                <icon icon="mdi:archive" />
+                <span>
+                  Inventory
+                </span>
+              </push-button>
+            </nuxt-link>
           </div>
         </div>
         <div class="flex items-center justify-center space-x-4">
