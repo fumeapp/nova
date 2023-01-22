@@ -20,8 +20,7 @@ const toggle = () => profile.value = !profile.value
 const login = () =>  modal.value = true
 const off = () => modal.value = false
 
-onMounted(() => {
-if (!api.loggedIn.value) useRouter().push('/')
+onMounted(() => { if (!api.loggedIn.value) useRouter().push('/')
 })
 
 

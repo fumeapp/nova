@@ -7,6 +7,28 @@ html.dark {
   @apply bg-gray-900;
 }
 
+input {
+  @apply dark:focus:ring-offset-gray-900;
+}
+
+.form-input {
+  @apply border border-gray-300 placeholder-gray-300 dark:border-gray-600 dark:placeholder-gray-500 outline-none ring-1 ring-gray-300 dark:ring-gray-800 focus:border-swatch1 focus:ring-swatch3;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  -webkit-mask: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/regular/times.svg)
+    no-repeat 50% 50%;
+  mask: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/regular/times.svg)
+    no-repeat 50% 50%;
+  @apply w-4 h-4 bg-swatch1 dark:bg-swatch2;
+}
+
+dark input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+}
+
 p,
 h1,
 h2,

@@ -53,6 +53,8 @@ use Illuminate\Support\Carbon;
  * @mixin Eloquent
  * @property array $payload
  * @method static Builder|User wherePayload($value)
+ * @property-read Collection|\App\Models\Image[] $images
+ * @property-read int|null $images_count
  */
 class User extends Authenticatable
 {
@@ -96,5 +98,10 @@ class User extends Authenticatable
     public function providers(): HasMany
     {
         return $this->hasMany(Provider::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
     }
 }

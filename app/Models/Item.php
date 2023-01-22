@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Item
@@ -24,8 +26,21 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Item whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Item whereUserId($value)
  * @mixin \Eloquent
+ * @property string $title
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereTitle($value)
  */
 class Item extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+    public function user(): belongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function images(): hasMany
+    {
+        return $this->hasMany(Image::class);
+    }
 }

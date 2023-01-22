@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ToastProps } from 'tailvue'
-
 const emit = defineEmits(['loading', 'add'])
 const fileInput = ref<undefined|HTMLInputElement>(undefined)
 const trigger = () => fileInput?.value?.click()
@@ -21,11 +19,7 @@ const upload = async (file: File) => {
   const data = new FormData()
   data.append('file', file)
   const response = await useApi().store<models.ImageResponse>('/image', data)
-  console.log(response)
-  useApi().$toast.show(response.data as ToastProps)
   emit('add', response.data.data)
-  uploading.value = uploading.value - 1
-  emit('loading', uploading.value)
 }
 </script>
 

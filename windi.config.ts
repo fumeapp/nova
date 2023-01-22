@@ -25,4 +25,7 @@ export default defineConfig({
       colors,
     },
   },
+  plugins: [
+    require('windicss/plugin/forms'),
+  ],
 })

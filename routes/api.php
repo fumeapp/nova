@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,4 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::apiResource('session', SessionController::class)->middleware('auth:api');
 Route::apiResource('image', ImageController::class)->middleware('auth:api');
+Route::apiResource('item', ItemController::class)->middleware('auth:api');

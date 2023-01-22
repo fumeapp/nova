@@ -12,6 +12,7 @@ declare global {
       updated_at: Date|null
       // relations
       user: User
+      labels: Labels
     }
     export type Images = Image[]
     export interface ImageResults extends api.MetApiResults { data: Images }
@@ -22,15 +23,33 @@ declare global {
       // columns
       id: number
       user_id: number
-      name: string
+      title: string
       description: string
       created_at: Date|null
       updated_at: Date|null
+      // relations
+      user: User
+      images: Images
     }
     export type Items = Item[]
     export interface ItemResults extends api.MetApiResults { data: Items }
     export interface ItemMetApiData extends api.MetApiData { data: Item }
     export interface ItemResponse extends MetApiResponse { data: ItemMetApiData }
+
+    export interface Label {
+      // columns
+      id: number
+      image_id: number
+      name: string
+      confidence: number
+      categories: string[]
+      // relations
+      image: Image
+    }
+    export type Labels = Label[]
+    export interface LabelResults extends api.MetApiResults { data: Labels }
+    export interface LabelMetApiData extends api.MetApiData { data: Label }
+    export interface LabelResponse extends MetApiResponse { data: LabelMetApiData }
 
     export interface Provider {
       // columns
@@ -79,6 +98,7 @@ declare global {
       sessions: unknown
       // relations
       providers: Providers
+      images: Images
       sessions: Sessions
       notifications: DatabaseNotifications
     }

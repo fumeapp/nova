@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Aws\Rekognition\RekognitionClient;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -16,7 +18,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        return $this->render($this->paginate(Image::with('labels')->forUser(auth()->user()), 10));
     }
 
     /**
@@ -101,10 +103,14 @@ class ImageController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Image $image
-     * @return Response
+     * @return Response|JsonResponse
+     * @throws AuthorizationException
      */
-    public function destroy(Image $image)
+    public function destroy(Image $image): Response|JsonResponse
     {
-        //
+        $this->authorize('delete', $image);
+        $image->labels()->delete();
+        $image->delete();
+        return $this->success('image.deleted');
     }
 }

@@ -38,7 +38,7 @@ class CreateUsersTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
             $table->timestamps();
         });

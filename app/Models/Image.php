@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,13 +32,18 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Image whereUpdatedAt($value)
  * @method static Builder|Image whereUserId($value)
  * @mixin Eloquent
+ * @property string $url
+ * @property-read Collection|Label[] $labels
+ * @property-read int|null $labels_count
+ * @property-read User $user
+ * @method static Builder|Image forUser(User $user)
+ * @method static Builder|Image whereUrl($value)
  */
 class Image extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
 
     public function user(): BelongsTo
     {
@@ -48,4 +54,10 @@ class Image extends Model
     {
         return $this->hasMany(Label::class);
     }
+
+    public function scopeForUser(Builder $query, User $user): Builder
+    {
+        return $query->whereUserId($user->id);
+    }
+
 }
