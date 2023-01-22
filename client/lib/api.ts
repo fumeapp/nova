@@ -158,15 +158,15 @@ export default class Api {
     return await $fetch<Results>(endpoint, this.fetchOptions(params))
   }
 
-  public async update<Response>(endpoint: string, params?: SearchParameters): Promise<Response | undefined> {
+  public async update<Response>(endpoint: string, params?: SearchParameters): Promise<Response> {
     return await $fetch<Response>(endpoint, this.fetchOptions(params, 'PUT'))
   }
 
-  public async store<Response>(endpoint: string, params?: SearchParameters): Promise<Response | undefined> {
+  public async store<Response>(endpoint: string, params?: SearchParameters): Promise<Response> {
     return await $fetch<Response>(endpoint, this.fetchOptions(params, 'POST'))
   }
 
-  public async delete<Response>(endpoint: string, params?: SearchParameters): Promise<Response | undefined> {
+  public async delete<Response>(endpoint: string, params?: SearchParameters): Promise<Response> {
     return await $fetch<Response>(endpoint, this.fetchOptions(params, 'DELETE'))
   }
 
@@ -235,6 +235,7 @@ export default class Api {
     this.token.value = undefined
     this.loggedIn.value = false
     Object.assign(this.$user, {})
+    console.log(this.config.redirect.logout)
     if (router) await router.push(this.config.redirect.logout)
     else if (process.client && document.location.pathname !== this.config.redirect.logout)
       document.location.href = this.config.redirect.logout

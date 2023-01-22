@@ -1,12 +1,14 @@
 import { defineConfig } from 'windicss/helpers'
+import windicssColors from 'windicss/colors'
 
 export const colors = {
-  swatch1: '#050212',
-  swatch2: '#09154a',
+  swatch1: '#374989',
+  swatch2: '#211440',
   swatch3: '#009ee9',
   swatch4: '#005ed6',
   swatch5: '#00d8f9',
   swatch6: '#0044ba',
+  gray: windicssColors.zinc,
 }
 
 export default defineConfig({

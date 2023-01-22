@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login')->name('auth.login');
     Route::get('logout', 'logout')->middleware('auth:api')->name('auth.logout');
     Route::get('me', 'me')->middleware('auth:api')->name('auth.session');
+
 });
 
 Route::apiResource('session', SessionController::class)->middleware('auth:api');
+Route::apiResource('image', ImageController::class)->middleware('auth:api');

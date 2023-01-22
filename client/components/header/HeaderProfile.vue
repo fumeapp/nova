@@ -1,8 +1,8 @@
 
 <script lang="ts" setup>
-import { onClickOutside } from '@vueuse/core'
-import { PushButton } from 'tailvue'
 import Menu from '@/lib/menu'
+import { PushButton } from 'tailvue'
+import { onClickOutside } from '@vueuse/core'
 
 const route = useRoute()
 const router = useRouter()
@@ -19,6 +19,11 @@ onClickOutside(outside, () => profile.value = false)
 const toggle = () => profile.value = !profile.value
 const login = () =>  modal.value = true
 const off = () => modal.value = false
+
+onMounted(() => {
+if (!api.loggedIn.value) useRouter().push('/')
+})
+
 
 </script>
 

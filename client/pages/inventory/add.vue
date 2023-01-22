@@ -4,38 +4,35 @@ useCrumbs().set([
   { name: 'Add an Item', icon: 'mdi:archive-plus' },
 ])
 
-const fileInput = ref<undefined|HTMLInputElement>(undefined)
+const loading = ref(0)
+const setLoading = (num: number) => loading.value = num
 
-// prompt to upload a file
-const trigger = () => fileInput?.value?.click()
-
-const handleFileUpload = (e: Event) => {
-  const files = (e.target as HTMLInputElement).files
-  if (files)
-    // do something with the files
-    console.log(files)
-
+const images = ref<models.Image[]>([])
+const addImage = (image: models.Image ): void => {
+  images.value.push(image)
 }
+
 </script>
 
 <template>
   <div class="p-2 lg:p-0">
     <form-two-column title="Upload Images" description="Start by uploading some pictures of the item">
-      <div
-        class="flex flex-col border border-2 rounded-xl border-dashed
-      border-gray-300 hover:border-gray-500 dark:border-gray-700
-      cursor-pointer w-full h-32 flex items-center justify-center"
-        @click="trigger"
-      >
-        <icon icon="mdi:cloud-upload" class="w-8 h-8 text-gray-300 dark:text-gray-500" />
-        <span>Upload Images</span>
-        <!-- accepts only images -->
-        <input
-          ref="fileInput"
-          type="file" class="hidden" multiple
-          accept="image/*"
-          @change="handleFileUpload"
-        >
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-3 mt-6">
+        <div v-for="i in loading" :key="i" class="border border-2 border-def h-32 rounded-lg bg-gray-800 flex-center">
+          <icon icon="eos-icons:three-dots-loading" class="w-14 h-14 text-swatch3" />
+        </div>
+        <div v-for="image in images" :key="image.id" class="h-32 border border-2 border-def overflow-hidden rounded-xl relative group">
+          <img :src="image.url" alt="image" class="w-full h-full object-cover">
+          <div
+            class="
+            absolute top-1 right-1 p-1
+            bg-gray-900/20 group-hover:bg-gray-900/80 transition-colors duration-100
+            w-6 h-6 flex items-center justify-center rounded-full"
+          >
+            <icon icon="mdi:close" class="w-full h-full text-gray-300" />
+          </div>
+        </div>
+        <form-gallery-image-add @loading="setLoading" @add="addImage" />
       </div>
     </form-two-column>
   </div>

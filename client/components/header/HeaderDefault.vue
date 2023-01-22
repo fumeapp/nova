@@ -9,17 +9,17 @@ defineProps({nopadding: {type: Boolean, default: false}})
 <template>
   <div>
     <nuxt-loading-indicator :color="color" />
-    <div class="relative min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
+    <div class="relative min-h-screen flex flex-col">
       <!-- Top nav-->
-      <header class="flex-shrink-0 relative h-16 bg-gray-100 dark:bg-gray-900 flex items-center">
+      <header class="flex-shrink-0 relative h-16 flex items-center">
         <!-- Logo area -->
         <div class="absolute inset-y-0 left-0 lg:static lg:flex-shrink-0">
-          <router-link
+          <nuxt-link
             to="/home"
-            class="flex items-center justify-center text-white h-16 w-16 lg:w-20 bg-gradient-to-br from-swatch3 to-swatch4"
+            class="block w-20 h-16 dark:border-gray-700 bg-swatch2/50 flex items-center justify-center"
           >
-            <header-logo class="h-8 w-auto text-white" />
-          </router-link>
+            <layout-logo class="w-12 h-12" />
+          </nuxt-link>
         </div>
 
         <!-- Picker area -->
