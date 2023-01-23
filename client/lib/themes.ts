@@ -25,7 +25,7 @@ export const ThemeRoundedWhiteRight: PushButtonTheme = {
   disabled: '',
 }
 export const ThemeGradient: PushButtonTheme = {
-  primary: 'font-medium rounded text-white bg-gradient-to-br from-swatch5/50 to-swatch4',
+  primary: 'font-medium rounded text-white bg-gradient-to-br from-swatch5 to-swatch4',
   active: 'hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-100 focus:ring-green-600 focus:shadow-outline-green active:bg-green-700',
   dark: 'dark:ring-offset-indigo-800',
 }

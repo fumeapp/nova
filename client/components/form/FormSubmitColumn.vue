@@ -23,7 +23,7 @@ const isBackFunction = typeof props.back === 'function'
 
 
 <template>
-  <div class="px-4 py-3 bg-gray-50 dark:bg-gray-800 dark:border-t dark:border-gray-600 text-right sm:px-6 flex justify-end space-x-2">
+  <div class="px-4 py-3 bg-gray-100 dark:bg-gray-800 dark:border-t dark:border-gray-600 text-right sm:px-6 flex justify-end space-x-2">
     <push-button v-if="isBackFunction" @click="back">
       <icon
         ico="mdi-arrow-left"

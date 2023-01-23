@@ -16,7 +16,7 @@ defineProps({nopadding: {type: Boolean, default: false}})
         <div class="absolute inset-y-0 left-0 lg:static lg:flex-shrink-0">
           <nuxt-link
             to="/home"
-            class="block w-20 h-16 dark:border-gray-700 bg-swatch2/50 flex items-center justify-center"
+            class="block w-20 h-16 dark:border-gray-700 bg-black flex items-center justify-center"
           >
             <layout-logo class="w-12 h-12" />
           </nuxt-link>
