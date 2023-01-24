@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36238c9dba2c474c4b5739ad1f57372b",
+    "content-hash": "14a044b87ecb4c6a14f92e7baa0a019e",
     "packages": [
         {
             "name": "acidjazz/humble",

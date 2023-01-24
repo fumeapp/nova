@@ -35,8 +35,12 @@ const destroyImage = async (image: models.Image): Promise<void> => {
 }
 
 const add = async() => {
-  item.value.images = images.value
-  const response = await useApi().store<models.ItemResponse>('/item', item.value)
+  const response = await useApi().store<models.ItemResponse>('/item', {
+    ...item.value,
+    images: images.value.map(i => i.id),
+    tags: tags.value,
+  })
+  useApi().$toast.show(response.data as ToastProps)
 }
 
 </script>

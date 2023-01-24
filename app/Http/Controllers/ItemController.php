@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Item;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class ItemController extends Controller
      *
      * @return Response|JsonResponse
      */
-    public function index()
+    public function index(): Response|JsonResponse
     {
         return $this->render($this->paginate(Item::with('images'), 10));
         //
@@ -24,11 +25,25 @@ class ItemController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return Response|JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): Response|JsonResponse
     {
-        //
+        $this
+            ->option('title', 'required|string')
+            ->option('description', 'required|string')
+            ->option('images', 'required|array')
+            ->option('tags', 'required|array')
+            ->verify();
+
+
+        $item = (new Item($request->only(['title', 'description'])))
+            ->user()->associate(auth()->user());
+
+        $item->save();
+        $item->images()->saveMany(Image::whereIn('id', $request->images)->get());
+
+        return $this->success('item.created', [], $item);
     }
 
     /**

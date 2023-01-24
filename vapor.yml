@@ -1,0 +1,20 @@
+id: 41500
+name: nova
+environments:
+  staging:
+    domain: api.nova.gives
+    database: nova-staging
+    memory: 2048
+    cli-memory: 2048
+    runtime: 'php-8.2:al2'
+    build:
+      - 'composer install --no-dev'
+      - 'php artisan event:cache'
+
+  production:
+    memory: 2048
+    cli-memory: 2048
+    runtime: 'php-8.2:al2'
+    build:
+      - 'composer install --no-dev'
+      - 'php artisan event:cache'
