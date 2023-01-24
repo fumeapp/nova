@@ -41,6 +41,9 @@ const add = async() => {
     tags: tags.value,
   })
   useApi().$toast.show(response.data as ToastProps)
+  if (response.data.success)
+    useRouter().push('/inventory')
+
 }
 
 </script>
@@ -70,7 +73,7 @@ const add = async() => {
         v-model="item.title" label="Title" required
         class="mt-6"
       />
-      <form-tag
+      <form-tags
         class="mt-6" :tags="tags" label="Tags"
         @update="updateTags"
       />

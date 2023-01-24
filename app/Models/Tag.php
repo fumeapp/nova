@@ -29,6 +29,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function items(): BelongsToMany
     {
         return $this->belongsToMany(Item::class);
