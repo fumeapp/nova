@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'added' => 'Item added successfully',
+    'added' => 'Item :title added successfully',
 ];

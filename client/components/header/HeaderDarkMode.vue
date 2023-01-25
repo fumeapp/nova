@@ -39,8 +39,7 @@ defineExpose({ toggle })
   >
     <span
       :id="id"
-      class="text-red-400 fill-red-300 w-8 h-8 -mr-1.5"
+      class="w-8 h-8 -mr-1.5"
     />
   </button>
 </template>
-

@@ -184,7 +184,6 @@ export default class Api {
   }
 
   public async toastError(error: FetchError): Promise<void> {
-    console.log('toastError', error)
 
     if (error.response?.status === 401)
       return await this.invalidate()
@@ -195,7 +194,7 @@ export default class Api {
 
     if (!this.$toast) throw error
 
-    if (error.response?._data && error.response._data.errors?.error?.reason)
+    if (error.response?._data && error.response._data.errors)
       for (const err of error.response._data.errors)
         this.$toast.show({
           type: 'danger',
