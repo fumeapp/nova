@@ -15,7 +15,7 @@ else loading.value = false
         <layout-logo class="w-32 h-32 mb-8" />
         <login-form :destroyed="() => {}" class="w-full max-w-md" />
         <div v-if="loading" class="z-10 rounded-lg absolute inset-0 bg-swatch1/60 flex items-center justify-center">
-          <icon icon="mdi:loading" class="animate-spin w-12 h-12" />
+          <icon name="mdi:loading" class="animate-spin w-12 h-12" />
         </div>
       </div>
     </div>

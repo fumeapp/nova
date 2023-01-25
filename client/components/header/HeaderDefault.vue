@@ -17,6 +17,7 @@ defineProps({nopadding: {type: Boolean, default: false}})
           <nuxt-link
             to="/home"
             class="block w-20 h-16 dark:border-gray-700 bg-black flex items-center justify-center"
+            aria-label="Home"
           >
             <layout-logo class="w-12 h-12" />
           </nuxt-link>
@@ -37,7 +38,7 @@ defineProps({nopadding: {type: Boolean, default: false}})
             @click="mobileOn"
           >
             <span class="sr-only">Open main menu</span>
-            <icon icon="bx:bx-menu" class="w-6 h-6" />
+            <icon name="bx:bx-menu" class="w-6 h-6" />
           </button>
         </div>
 

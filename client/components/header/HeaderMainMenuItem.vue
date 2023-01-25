@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
-import { MenuItem } from '@/types/portal'
+import { MenuItem } from '@/types/frontend'
 defineProps({item: { type: Object as PropType<MenuItem>, required: true }, mobile: Boolean})
 const emit = defineEmits(['click'])
 const { isCurrent } = useMenu(useApi())
@@ -19,7 +19,8 @@ const { isCurrent } = useMenu(useApi())
     @click="emit('click')"
   >
     <icon
-      :icon="item.icon"
+      v-if="item.icon"
+      :name="item.icon"
       class="w-6 h-6"
       :class="isCurrent(item) ? 'text-logo-b' : 'text-gray-400'"
     />

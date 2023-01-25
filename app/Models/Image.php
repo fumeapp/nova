@@ -38,6 +38,7 @@ use Illuminate\Support\Carbon;
  * @property-read User $user
  * @method static Builder|Image forUser(User $user)
  * @method static Builder|Image whereUrl($value)
+ * @property-read \App\Models\Item|null $item
  */
 class Image extends Model
 {

@@ -30,7 +30,7 @@ const upload = async (file: File) => {
       cursor-pointer w-full h-32 flex items-center justify-center"
     @click="trigger"
   >
-    <icon icon="mdi:image-plus" class="w-8 h-8" />
+    <icon name="mdi:image-plus" class="w-8 h-8" />
     <span>Add Photo</span>
     <!-- accepts only images -->
     <input

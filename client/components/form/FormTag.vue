@@ -17,7 +17,6 @@ defineProps({
       class="ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full
             text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500
             focus:bg-indigo-500 focus:text-white focus:outline-none"
-
       @click="remove ? remove(tag) : null"
     >
       <span class="sr-only">Remove Tag</span>

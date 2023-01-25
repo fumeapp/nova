@@ -1,4 +1,5 @@
 import { Numeral } from 'numeral'
+import { maps } from 'google.maps'
 import { LottiePlayer } from 'lottie-web'
 
 declare module '*.vue' {
@@ -11,5 +12,8 @@ declare global {
     Pusher: typeof Pusher
     numeral: Numeral
     lottie: LottiePlayer
+    google: {
+      maps: maps
+    }
   }
 }

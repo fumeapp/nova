@@ -68,7 +68,7 @@ const on = () => {
             @click="off"
           >
             <span class="sr-only">Close main menu</span>
-            <icon icon="mdi-close" class="w-6 h-6 text-gray-400" />
+            <icon name="mdi-close" class="w-6 h-6 text-gray-400" />
           </button>
         </div>
         <div v-if="api.loggedIn">
@@ -91,7 +91,7 @@ const on = () => {
               <!--
               <router-link to="/alerts" class="relative ml-auto flex-shrink-0 p-2 text-gray-400 hover:text-gray-500" @click="off">
                 <span class="sr-only">View notifications</span>
-                <icon icon="mdi-bell" class="w-6 h-6" />
+                <icon name="mdi-bell" class="w-6 h-6" />
                 <unread-alerts :unread="unread" />
               </router-link>
             -->
@@ -105,7 +105,7 @@ const on = () => {
                   @click="item.action(); off()"
                 >
                   <icon
-                    :icon="item.icon"
+                    :name="item.icon"
                     class="w-5 h-5 mr-3 text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-emerald-300"
                   />
                   {{ item.name }}

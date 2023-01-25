@@ -3,6 +3,7 @@ const meta = {
   description: 'Description for Nova.',
   url: process.env.WEB_URL,
   image: process.env.WEB_URL + '/nova.png',
+  apiKey: 'AIzaSyCA07GS1boV0NCnZHFUjCNZEdiVQnYJ1aE',
 }
 
 import { colors } from "./windi.config"
@@ -11,6 +12,9 @@ export default defineNuxtConfig({
   srcDir: 'client/',
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en',
+      },
       title: meta.title,
       meta: [
         { charset: 'utf-8' },
@@ -18,11 +22,6 @@ export default defineNuxtConfig({
         { hid: 'description', name: 'description', content: meta.description },
         { name: 'msapplication-TileColor', content: colors.swatch5 },
         { name: 'theme-color', content: colors.swatch5 },
-
-        // Schema.org
-        { hid: 'itemprop:name', content: meta.title },
-        { hid: 'itemprop:description', content: meta.description },
-        { hid: 'itemprop:image', content: meta.image },
 
         // facebook
         { hid: 'og:type', property: 'og:type', content: 'website' },
@@ -91,7 +90,12 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-windicss',
     '@tailvue/nuxt',
+    'nuxt-icon',
+    '@nuxtjs/html-validator',
   ],
+  htmlValidator: {
+    usePrettier: true,
+  },
 
   /**
    * @see https://v3.nuxtjs.org/guide/features/runtime-config#exposing-runtime-config

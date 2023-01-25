@@ -72,7 +72,7 @@ async function revoke (session: api.Session) {
     <div class="absolute right-0 top-0 m-2">
       <push-button size="xs" @click="confirm(session)">
         <icon
-          icon="mdi-trash"
+          name="mdi-trash"
           class="w-4 h-4 text-red-400"
         />
       </push-button>
@@ -86,20 +86,20 @@ async function revoke (session: api.Session) {
           {{ name }}
           <icon
             v-if="session.current"
-            icon="mdi-check-decagram"
+            name="mdi-check-decagram"
             class="w-4 h-4 mr-1.5 text-green-400"
           />
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-application-outline"
+            name="mdi-application-outline"
             class="w-4 h-4 mr-1.5 text-gray-400"
           />
           {{ session.device.browser ? session.device.browser : source }}
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-map"
+            name="mdi-map"
             class="w-4 h-4 mr-1.5 text-gray-400"
           />
           {{ session.location.city }}, {{ session.location.state }}, {{ session.location.country }}
@@ -109,7 +109,7 @@ async function revoke (session: api.Session) {
           class="flex items-center text-gray-500 text-sm mb-1"
         >
           <icon
-            icon="flat-color-icons:google"
+            name="flat-color-icons:google"
             class="w-4 h-4 mr-1.5"
           />
           Verified through Google
@@ -118,26 +118,26 @@ async function revoke (session: api.Session) {
           v-if="session.source === 'github'"
           class="flex items-center text-gray-500 text-sm mb-1"
         >
-          <icon icon="fa-brands:github" class="w-4 h-4 mr-1.5" />
+          <icon name="fa-brands:github" class="w-4 h-4 mr-1.5" />
           Verified through Github
         </div>
         <div
           v-if="session.source === 'email'"
           class="flex items-center text-gray-500 text-sm mb-1"
         >
-          <icon icon="mdi-email" class="w-4 h-4 mr-1.5" />
+          <icon name="mdi-email" class="w-4 h-4 mr-1.5" />
           Verified through E-mail
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-clock"
+            name="mdi-clock"
             class="w-4 h-4 mr-1.5 text-gray-400"
           />
           Created {{ dayjs(session.created_at).fromNow() }}
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-clock"
+            name="mdi-clock"
             class="w-4 h-4 mr-1.5 text-gray-400"
           />
           Last activity {{ dayjs(session.updated_at).fromNow() }}

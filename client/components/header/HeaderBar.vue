@@ -14,7 +14,7 @@ import { PushButton } from 'tailvue'
           <div class="hidden ml-10 space-x-8 lg:block">
             <nuxt-link to="/item">
               <push-button>
-                <icon icon="mdi:archive" />
+                <icon name="mdi:archive" />
                 <span>
                   Inventory
                 </span>

@@ -5,7 +5,7 @@
   >
     <div class="rounded-md shadow-sm flex" :class="mt">
       <div v-if="loading && spinner" class="absolute right-0 top-0 bottom-0 flex items-center">
-        <icon icon="gg-spinner-two" class="w-4 h-4 animate-spin mr-2.5" />
+        <icon name="gg-spinner-two" class="w-4 h-4 animate-spin mr-2.5" />
       </div>
       <input
         v-if="type === 'phone'"

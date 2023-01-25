@@ -1,11 +1,16 @@
 <script lang="ts" setup>
 import { PushButtonState, ToastProps } from 'tailvue'
 
+if (process.client)  {
+  const app = useNuxtApp()
+  // add initMap as a global function
+  app.vueApp.provide('initMap', () => console.log('fuck this'))
+}
+
 useCrumbs().set([
   { name: 'Inventory', to: '/inventory', icon: 'mdi:archive' },
   { name: 'Add an Item', icon: 'mdi:archive-plus' },
 ])
-
 const state = ref<PushButtonState>('active')
 
 const item = ref<models.Item>({} as models.Item)
@@ -41,6 +46,7 @@ const add = async() => {
     tags: tags.value,
   })
   useApi().$toast.show(response.data as ToastProps)
+
   if (response.data.success)
     useRouter().push('/inventory')
 
@@ -60,15 +66,20 @@ const add = async() => {
             w-6 h-6 flex items-center justify-center rounded-full"
           @click="destroyImage(image)"
         >
-          <icon icon="mdi:close" class="w-full h-full text-gray-300" />
+          <icon name="mdi:close" class="w-full h-full text-gray-300" />
         </div>
       </div>
       <div v-for="i in loading" :key="i" class="border border-2 border-def h-32 rounded-lg bg-gray-800 flex-center">
-        <icon icon="eos-icons:three-dots-loading" class="w-14 h-14 text-swatch3" />
+        <icon name="eos-icons:three-dots-loading" class="w-14 h-14 text-swatch3" />
       </div>
       <form-gallery-image-add @loading="setLoading" @add="addImage" />
     </div>
     <form-border>
+      <client-only>
+        <form-input-location
+          v-model="item.location" label="Location" required
+        />
+      </client-only>
       <form-input
         v-model="item.title" label="Title" required
         class="mt-6"

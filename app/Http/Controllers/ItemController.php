@@ -33,6 +33,13 @@ class ItemController extends Controller
         $this
             ->option('title', 'required|string')
             ->option('description', 'required|string')
+            ->option('images', 'required|array')
+            ->option('location', 'nullable')
+            ->option('tags', 'required|array')
+            ->verify();
+
+
+        $item = (new Item($request->only(['title', 'description', 'location'])))
             ->option('images', 'required|array|min:1')
             ->option('tags', 'required|array')
             ->verify();
