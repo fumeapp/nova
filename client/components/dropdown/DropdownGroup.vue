@@ -1,30 +1,5 @@
-<template>
-  <div
-    class="origin-top-right border dark:border-gray-700 z-20 absolute right-0 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 dark:divide-gray-600"
-    :class="[mt, width]"
-  >
-    <div v-for="(items, i) in groups" :key="i" class="py-1">
-      <div
-        v-for="item in items"
-        :key="item.name"
-        class="cursor-pointer group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-300"
-        role="menuitem"
-        @click="action(item.action)"
-      >
-        <icon
-          v-if="item.icon"
-          :icon="item.icon"
-          class="w-5 h-5 mr-3 text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-emerald-300"
-          :class="item.iconClass ? item.iconClass : ''"
-        />
-        {{ item.name }}
-      </div>
-    </div>
-  </div>
-</template>
 <script lang="ts" setup>
 import { PropType } from 'vue'
-import { Icon } from '@iconify/vue'
 
 /** Menu item */
 export interface DropdownItem {
@@ -64,3 +39,29 @@ const action = (action: string | (() => void)): void => {
   else emit('action', action)
 }
 </script>
+
+
+<template>
+  <div
+    class="origin-top-right border dark:border-gray-700 z-20 absolute right-0 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 dark:divide-gray-600"
+    :class="[mt, width]"
+  >
+    <div v-for="(items, i) in groups" :key="i" class="py-1">
+      <div
+        v-for="item in items"
+        :key="item.name"
+        class="cursor-pointer group flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-300"
+        role="menuitem"
+        @click="action(item.action)"
+      >
+        <icon
+          v-if="item.icon"
+          :name="item.icon"
+          class="w-5 h-5 mr-3 text-gray-400 group-hover:text-emerald-500 dark:group-hover:text-emerald-300"
+          :class="item.iconClass ? item.iconClass : ''"
+        />
+        {{ item.name }}
+      </div>
+    </div>
+  </div>
+</template>

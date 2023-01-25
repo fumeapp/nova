@@ -48,7 +48,7 @@ const add = () => {
           @click="remove(tag)"
         >
           <span class="sr-only">Remove Tag</span>
-          <icon icon="mdi:close-bold" class="w-3 h-3" />
+          <icon name="mdi:close-bold" class="w-3 h-3" />
         </button>
       </span>
       <input

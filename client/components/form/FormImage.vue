@@ -93,7 +93,7 @@ const remove = (): void => {
       >
         <icon
           v-if="!url"
-          :icon="ico"
+          :name="ico"
           class="w-12 h-12 p-3 text-gray-400"
         />
         <img
@@ -105,7 +105,7 @@ const remove = (): void => {
         <div v-if="state !== 'active'" class="w-12 h-12" />
         <icon
           v-else-if="!url"
-          :icon="ico"
+          :name="ico"
           class="w-12 h-12 p-3 text-gray-400"
         />
         <img
@@ -119,14 +119,14 @@ const remove = (): void => {
           @click="trigger"
         >
           <icon
-            :icon="state === 'loading' ? 'gg:spinner' : 'bx:bx-cloud-upload'"
+            :name="state === 'loading' ? 'gg:spinner' : 'bx:bx-cloud-upload'"
             class="w-4 h-4 mr-1.5"
             :class="{'animate-spin text-emerald-400': state === 'loading', 'text-gray-400': state !== 'loading'}"
           />
           Upload
         </push-button>
         <button v-if="props.removable" @click="remove">
-          <icon icon="mdi-close" class="w-4 h-4" />
+          <icon name="mdi-close" class="w-4 h-4" />
         </button>
         <input
           ref="input" type="file" class="hidden"

@@ -3,7 +3,7 @@
     <div class="absolute right-0 top-0 m-2">
       <push-button theme="text" size="xs" class="shadow-none">
         <icon
-          icon="mdi-trash"
+          name="mdi-trash"
           class="w-4 h-4 text-gray-200"
         />
       </push-button>
@@ -15,7 +15,7 @@
       <div>
         <div class="flex items-center text-gray-900 mb-1">
           <icon
-            icon="mdi-laptop"
+            name="mdi-laptop"
             class="w-4 h-4 mr-1.5 text-gray-200"
           />
           <div class="w-32 skeleton">
@@ -24,7 +24,7 @@
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-application-outline"
+            name="mdi-application-outline"
             class="w-4 h-4 mr-1.5 text-gray-200"
           />
           <div class="w-32 skeleton">
@@ -33,7 +33,7 @@
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-map"
+            name="mdi-map"
             class="w-4 h-4 mr-1.5 text-gray-200"
           />
           <div class="w-20 skeleton">
@@ -42,7 +42,7 @@
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-envelope"
+            name="mdi-envelope"
             class="w-4 h-4 mr-1.5 text-gray-200"
           />
           <div class="w-20 skeleton">
@@ -51,7 +51,7 @@
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-clock"
+            name="mdi-clock"
             class="w-4 h-4 mr-1.5 text-gray-200"
           />
           <div class="w-14 skeleton">
@@ -60,7 +60,7 @@
         </div>
         <div class="flex items-center text-gray-500 text-sm mb-1">
           <icon
-            icon="mdi-clock"
+            name="mdi-clock"
             class="w-4 h-4 mr-1.5 text-gray-200"
           />
           <div class="w-14 skeleton">

@@ -24,6 +24,6 @@ export default { layout: 'public' }
 
 <template>
   <div class="w-screen h-screen flex items-center justify-center">
-    <icon icon="eos-icons:loading" class="w-12 h-12" />
+    <icon name="eos-icons:loading" class="w-12 h-12" />
   </div>
 </template>

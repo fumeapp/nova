@@ -25,7 +25,7 @@ defineProps({nopadding: {type: Boolean, default: false}})
             <li key="home">
               <div>
                 <router-link to="/home" class="text-gray-400 hover:text-gray-500">
-                  <icon icon="fa-solid:home" class="w-5 h-5" />
+                  <icon name="fa-solid:home" class="w-5 h-5" />
                   <span class="sr-only">Home</span>
                 </router-link>
               </div>
@@ -33,17 +33,17 @@ defineProps({nopadding: {type: Boolean, default: false}})
 
             <li v-for="crumb in list" :key="crumb.name">
               <div v-if="crumb" class="flex items-center">
-                <icon icon="mdi-chevron-right" class="w-5 h-5" />
+                <icon name="mdi-chevron-right" class="w-5 h-5" />
                 <router-link v-if="crumb && crumb.to" :to="crumb.to" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
                   <div class="flex items-center space-x-2">
-                    <icon v-if="crumb.icon" :icon="crumb.icon" class="w-5 h-5" />
+                    <icon v-if="crumb.icon" :name="crumb.icon" class="w-5 h-5" />
                     <img v-if="crumb.image" :src="crumb.image" class="w-5 h-5 rounded-full">
                     <span class="whitespace-nowrap"> {{ crumb.name }} </span>
                   </div>
                 </router-link>
                 <span v-else class="ml-4 text-sm font-medium text-gray-500">
                   <div class="flex items-center space-x-2">
-                    <icon v-if="crumb.icon" :icon="crumb.icon" class="w-5 h-5" />
+                    <icon v-if="crumb.icon" :name="crumb.icon" class="w-5 h-5" />
                     <img v-if="crumb.image" :src="crumb.image" class="w-5 h-5 rounded-full">
                     <span> {{ crumb.name }} </span>
                   </div>
@@ -61,7 +61,7 @@ defineProps({nopadding: {type: Boolean, default: false}})
           >
             <push-button size="xs" class="w-full">
               <div class="flex flex-1 items-center justify-center space-x-2">
-                <icon :icon="action.icon" class="w-4 h-4" />
+                <icon :name="action.icon" class="w-4 h-4" />
                 <span> {{ action.name }} </span>
               </div>
             </push-button>

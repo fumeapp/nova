@@ -39,6 +39,7 @@ onMounted(() => { if (!api.loggedIn.value) useRouter().push('/')
           class="max-w-xs bg-blue-300 flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300"
           aria-expanded="false"
           aria-haspopup="true"
+          aria-label="User Menu"
           @click="toggle"
         >
           <span class="sr-only">Open user menu</span>

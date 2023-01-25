@@ -29,12 +29,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @mixin \Eloquent
  * @property string $title
  * @method static \Illuminate\Database\Eloquent\Builder|Item whereTitle($value)
+ * @property array|null $location
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
+ * @property-read int|null $images_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @property-read int|null $tags_count
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Item whereLocation($value)
  */
 class Item extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    protected $casts = ['location' => 'array'];
+
     public function user(): belongsTo
     {
         return $this->belongsTo(User::class);

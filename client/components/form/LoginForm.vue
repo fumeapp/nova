@@ -84,29 +84,29 @@ const oauthComplete = async (result: UserLogin): Promise<void> => {
   <div class="bg-white dark:bg-gray-800 py-8 px-4 sm:px-10 rounded-lg shadow shadow-xl dark:border dark:border-gray-700">
     <div class="grid grid-cols-2 gap-3">
       <div>
-        <push-button class="w-full justify-center" @click="login('google')">
+        <push-button class="w-full justify-center" aria-label="Login with Google" @click="login('google')">
           <icon
             v-if="loading.google"
-            icon="gg:spinner-two"
+            name="gg:spinner-two"
             class="w-6 h-6 text-indigo-600 animate-spin"
           />
           <icon
             v-else
-            icon="flat-color-icons:google"
+            name="flat-color-icons:google"
             class="w-6 h-6"
           />
         </push-button>
       </div>
       <div>
-        <push-button class="w-full justify-center" @click="login('facebook')">
+        <push-button class="w-full justify-center" aria-label="Login with Facebook" @click="login('facebook')">
           <icon
             v-if="loading.facebook"
-            icon="gg:spinner-two"
+            name="gg:spinner-two"
             class="w-6 h-6 text-indigo-600 animate-spin"
           />
           <icon
             v-else
-            icon="logos:facebook"
+            name="logos:facebook"
             class="w-6 h-6"
           />
         </push-button>
@@ -125,7 +125,7 @@ const oauthComplete = async (result: UserLogin): Promise<void> => {
     <label class="mt-6 block text-sm font-medium leading-5 text-gray-700 dark:text-gray-500" for="login_email">Email address</label>
     <div class="mt-1 relative rounded-md shadow-sm">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <icon icon="mdi:envelope" class="w-5 h-5 text-gray-400" />
+        <icon name="mdi:envelope" class="w-5 h-5 text-gray-400" />
       </div>
       <input
         id="login_email"
@@ -144,7 +144,7 @@ const oauthComplete = async (result: UserLogin): Promise<void> => {
         <push-button theme="indigo" class="w-full justify-center" @click="attempt">
           Sign in / Register
           <div v-if="loading.attempt" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <icon icon="gg:spinner-two" class="w-5 h-5 text-indigo-200 animate-spin" />
+            <icon name="gg:spinner-two" class="w-5 h-5 text-indigo-200 animate-spin" />
           </div>
         </push-button>
       </span>

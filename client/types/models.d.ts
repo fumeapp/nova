@@ -1,4 +1,4 @@
-export {}
+export { }
 declare global {
   export namespace models {
 
@@ -6,12 +6,13 @@ declare global {
       // columns
       id: number
       user_id: number
-      item_id: number|null
+      item_id: number | null
       url: string
-      created_at: Date|null
-      updated_at: Date|null
+      created_at: Date | null
+      updated_at: Date | null
       // relations
       user: User
+      item: Item
       labels: Labels
     }
     export type Images = Image[]
@@ -25,11 +26,13 @@ declare global {
       user_id: number
       title: string
       description: string
-      created_at: Date|null
-      updated_at: Date|null
+      location: string[] | null
+      created_at: Date | null
+      updated_at: Date | null
       // relations
       user: User
       images: Images
+      tags: Tags
     }
     export type Items = Item[]
     export interface ItemResults extends api.MetApiResults { data: Items }
@@ -55,11 +58,11 @@ declare global {
       // columns
       id: number
       user_id: number
-      avatar: string|null
+      avatar: string | null
       name: string
       payload: string[]
-      created_at: Date|null
-      updated_at: Date|null
+      created_at: Date | null
+      updated_at: Date | null
     }
     export type Providers = Provider[]
     export interface ProviderResults extends api.MetApiResults { data: Providers }
@@ -70,8 +73,10 @@ declare global {
       // columns
       id: number
       name: string
-      created_at: Date|null
-      updated_at: Date|null
+      created_at: Date | null
+      updated_at: Date | null
+      // relations
+      items: Items
     }
     export type Tags = Tag[]
     export interface TagResults extends api.MetApiResults { data: Tags }
@@ -82,11 +87,11 @@ declare global {
       // columns
       id: number
       email: string
-      name: string|null
-      avatar: string|null
+      name: string | null
+      avatar: string | null
       payload: string[]
-      created_at: Date|null
-      updated_at: Date|null
+      created_at: Date | null
+      updated_at: Date | null
       // mutators
       first_name: string
       has_active_session: bool

@@ -33,17 +33,18 @@ class ItemController extends Controller
             ->option('title', 'required|string')
             ->option('description', 'required|string')
             ->option('images', 'required|array')
+            ->option('location', 'nullable')
             ->option('tags', 'required|array')
             ->verify();
 
 
-        $item = (new Item($request->only(['title', 'description'])))
+        $item = (new Item($request->only(['title', 'description', 'location'])))
             ->user()->associate(auth()->user());
 
         $item->save();
         $item->images()->saveMany(Image::whereIn('id', $request->images)->get());
 
-        return $this->success('item.created', [], $item);
+        return $this->success('item.added', ['title' => $item->title], $item);
     }
 
     /**

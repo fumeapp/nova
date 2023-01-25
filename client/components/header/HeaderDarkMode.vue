@@ -33,7 +33,10 @@ defineExpose({ toggle })
 </script>
 
 <template>
-  <button class="flex items-center justify-center rounded-full focus:outline-none" @click="toggle">
+  <button
+    type="button" class="flex items-center justify-center rounded-full focus:outline-none" aria-label="Dark Mode Toggle"
+    @click="toggle"
+  >
     <span
       :id="id"
       class="text-red-400 fill-red-300 w-8 h-8 -mr-1.5"
