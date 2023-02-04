@@ -57,11 +57,11 @@ class ItemController extends Controller
      * Display the specified resource.
      *
      * @param Item $item
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function show(Item $item)
+    public function show(Item $item): JsonResponse|Response
     {
-        //
+        return $this->render($item->load(['tags', 'images']));
     }
 
     /**
@@ -69,11 +69,26 @@ class ItemController extends Controller
      *
      * @param Request $request
      * @param Item $item
-     * @return Response
+     * @return JsonResponse|Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Item $item): JsonResponse|Response
     {
-        //
+        $this
+            ->option('title', 'required|string')
+            ->option('description', 'required|string')
+            ->option('location', 'nullable')
+            ->option('images', 'required|array')
+            ->option('images', 'required|array|min:1')
+            ->option('tags', 'required|array')
+            ->verify();
+
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->location = $request->location;
+
+        $item->save();
+
+        return $this->success('item.updated', ['title' => $item->title], $item);
     }
 
     /**

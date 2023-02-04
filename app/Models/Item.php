@@ -44,6 +44,13 @@ class Item extends Model
     protected $guarded = [];
     protected $casts = ['location' => 'array'];
 
+    public array $interfaces = [
+        'location' => [
+            'import' => "@/types/api",
+            'type' => 'Location',
+        ],
+    ];
+
     public function user(): belongsTo
     {
         return $this->belongsTo(User::class);

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import consolaGlobalInstance from 'consola'
+
 const apiKey = 'AIzaSyCA07GS1boV0NCnZHFUjCNZEdiVQnYJ1aE'
 
 const load = () => {
@@ -18,7 +20,7 @@ const load = () => {
   }
 }
 
-defineProps({
+const props = defineProps({
   label: String,
   tip: String,
   modelValue: Object,
@@ -51,6 +53,15 @@ const init = (): void => {
       fields,
     })
     autocomplete.addListener('place_changed', select)
+
+    if (props.modelValue) {
+      const service = new google.maps.places.PlacesService(input.value)
+      service.getDetails({ placeId: props.modelValue.place_id }, (placeResult, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK)
+          place.value = placeResult as google.maps.places.PlaceResult
+          emit('update:modelValue', place.value)
+      })
+    }
   }
 }
 

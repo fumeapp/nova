@@ -76,5 +76,25 @@ declare global {
 
     export type Sessions = Array<Session>
     export type SessionResults = Modify<api.MetApiResults, { data: Sessions }>
+
+    export interface Location {
+      adr_address: string
+      geometry: LocationGeometry
+      name: string
+      place_id: string
+    }
+
+    export interface LocationGeometry {
+      location: {
+        lat: number
+        lng: number
+      }
+      viewport: {
+        south: number
+        west: number
+        north: number
+        east: number
+      }
+    }
   }
 }

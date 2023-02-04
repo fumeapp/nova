@@ -11,5 +11,3 @@ get()
     <item-list :items="items?.data" />
   </div>
 </template>
-
-<style scoped></style>
