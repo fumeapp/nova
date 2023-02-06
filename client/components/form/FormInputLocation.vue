@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import consolaGlobalInstance from 'consola'
-
 const apiKey = 'AIzaSyCA07GS1boV0NCnZHFUjCNZEdiVQnYJ1aE'
 
 const load = () => {
@@ -38,7 +36,8 @@ const fields = ['name', 'formatted_address', 'adr_address', 'place_id', 'geometr
 let autocomplete = undefined as undefined|google.maps.places.Autocomplete
 
 const placeMap = computed((): undefined|string => {
-  if (!place.value || !place.value.geometry || !place.value.geometry.location) return undefined
+  if (!place.value || !place.value.geometry || !place.value.geometry.location || !place.value.geometry.location.lat) return undefined
+  if (typeof place.value.geometry.location.lat !== 'function') return undefined
     return 'https://maps.googleapis.com/maps/api/staticmap?center=' +
       `${place.value.geometry.location.lat()},${place.value.geometry.location.lng()}&zoom=14&size=600x200` +
       `&markers=color:0x009ee9|${place.value.geometry.location.lat()},${place.value.geometry.location.lng()}` +
@@ -57,10 +56,20 @@ const init = (): void => {
     if (props.modelValue) {
       const service = new google.maps.places.PlacesService(input.value)
       service.getDetails({ placeId: props.modelValue.place_id }, (placeResult, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK)
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
           place.value = placeResult as google.maps.places.PlaceResult
+          delete place.value?.address_components
+          delete place.value?.icon
+          delete place.value?.icon_background_color
+          delete place.value?.icon_mask_base_uri
+          delete place.value?.plus_code
+
           emit('update:modelValue', place.value)
+        }
       })
+      place.value = props.modelValue
+      emit('update:modelValue', place.value)
+      input.value.value = place.value.formatted_address as string
     }
   }
 }

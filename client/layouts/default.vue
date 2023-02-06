@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <header-default>
-      <slot />
-    </header-default>
-  </div>
+  <header-default>
+    <slot />
+  </header-default>
 </template>

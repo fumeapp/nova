@@ -14,14 +14,14 @@ const tags = ref<string[]>([])
 const updateTags = (updated: string[]) => tags.value = updated
 const images = ref<models.Image[]>([])
 
-
-if (!adding.value) {
+const get = async() => {
   const response = await useApi().get<models.ItemResult>(`/item/${useRoute().params.item}`)
   item.value = response.data
-  // make tags.value a list of strings from item.value.tags
   tags.value = item.value.tags.map(t => t.name)
   images.value = item.value.images
 }
+
+if (!adding.value) await get()
 
 useCrumbs().set([
   { name: 'Inventory', to: '/inventory', icon: 'mdi:archive' },
@@ -37,8 +37,7 @@ const addImage = (image: models.Image ): void => {
   images.value.push(image)
   loading.value--
   if (loading.value === 0) state.value = 'active'
-  // update tags.value with a unique list from key name inside mage.labels array
-  tags.value = Array.from(new Set(images.value.flatMap(i => i.labels.map(l => l.name))))
+  if (adding) tags.value = Array.from(new Set(images.value.flatMap(i => i.labels.map(l => l.name))))
 }
 
 const destroyImage = async (image: models.Image): Promise<void> => {
@@ -82,7 +81,7 @@ const title = computed(() => adding.value ? 'Adding inventory.' : 'Updating inve
         <img :src="image.url" alt="image" class="w-full h-full object-cover">
         <div
           class="
-            absolute top-1 right-1 p-1
+            absolute top-1 right-1 p-1 cursor-pointer
             bg-gray-900/20 group-hover:bg-gray-900/80 transition-colors duration-100
             w-6 h-6 flex items-center justify-center rounded-full"
           @click="destroyImage(image)"

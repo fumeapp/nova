@@ -71,5 +71,3 @@ defineProps({nopadding: {type: Boolean, default: false}})
     </div>
   </div>
 </template>
-
-<style scoped></style>
