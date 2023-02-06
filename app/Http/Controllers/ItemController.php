@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use MatanYadaev\EloquentSpatial\Objects\Point;
 
 class ItemController extends Controller
 {
@@ -53,7 +54,7 @@ class ItemController extends Controller
         $location = (new Location([
             'payload' => $request->location,
             'place_id' => $request->location['place_id'],
-            'coordinate' => DB::raw("(GeomFromText('POINT(" . $coords['lat'] . " " . $coords['lng'] . ")'))"),
+            'coordinate' => new Point($coords['lat'], $coords['lng']),
 
         ]))->item()->associate($item);
         $location->save();
