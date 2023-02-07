@@ -10,6 +10,7 @@ if (process.client)  {
 }
 const state = ref<PushButtonState>('active')
 const item = ref<models.Item>({} as models.Item)
+const location = ref<undefined|google.maps.places.PlaceResult>(undefined)
 const tags = ref<string[]>([])
 const updateTags = (updated: string[]) => tags.value = updated
 const images = ref<models.Image[]>([])
@@ -51,6 +52,7 @@ const add = async() => {
     ...item.value,
     images: images.value.map(i => i.id),
     tags: tags.value,
+    location: location.value,
   })
   useApi().$toast.show(response.data as ToastProps)
 
@@ -97,7 +99,7 @@ const title = computed(() => adding.value ? 'Adding inventory.' : 'Updating inve
     <form-border>
       <client-only>
         <form-input-location
-          v-model="item.location" label="Location" required
+          v-model="location" label="Location" required
         />
       </client-only>
       <form-input

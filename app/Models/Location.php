@@ -37,9 +37,9 @@ class Location extends Model
     use HasFactory;
 
     protected $guarded = [];
-
     protected $casts = [
-        'point' => Point::class,
+        'coordinate' => Point::class,
+        'payload' => 'array',
     ];
 
     public array $interfaces = [
@@ -49,7 +49,8 @@ class Location extends Model
         ],
     ];
 
-    public function item (): BelongsTo {
+    public function item(): BelongsTo
+    {
         return $this->belongsTo(Item::class);
     }
 }

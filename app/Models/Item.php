@@ -46,14 +46,6 @@ class Item extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $casts = ['location' => 'array'];
-
-    public array $interfaces = [
-        'location' => [
-            'import' => "@/types/api",
-            'type' => 'Location',
-        ],
-    ];
 
     public function location(): BelongsTo
     {

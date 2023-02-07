@@ -47,7 +47,6 @@ class CreateUsersTable extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->string('title');
             $table->string('description');
-            $table->string('location', 3000)->nullable();
             $table->timestamps();
         });
 

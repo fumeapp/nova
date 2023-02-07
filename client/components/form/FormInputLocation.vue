@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+
+import { PropType } from 'vue'
+
 const apiKey = 'AIzaSyCA07GS1boV0NCnZHFUjCNZEdiVQnYJ1aE'
 
 const load = () => {
@@ -21,7 +24,7 @@ const load = () => {
 const props = defineProps({
   label: String,
   tip: String,
-  modelValue: Object,
+  modelValue: Object as PropType<undefined|google.maps.places.PlaceResult>,
   optional: Boolean,
   required: Boolean,
 })

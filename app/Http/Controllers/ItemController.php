@@ -36,10 +36,7 @@ class ItemController extends Controller
             ->option('tags', 'required|array')
             ->verify();
 
-        ray($request->location['geometry']['location']);
-
-
-        $item = (new Item($request->only(['title', 'description', 'location'])))
+        $item = (new Item($request->only(['title', 'description'])))
             ->user()->associate(auth()->user());
 
         $item->save();
@@ -50,6 +47,9 @@ class ItemController extends Controller
         }
 
         $coords = $request->location['geometry']['location'];
+
+        ray($coords);
+        ray($request->location);
 
         $location = (new Location([
             'payload' => $request->location,
