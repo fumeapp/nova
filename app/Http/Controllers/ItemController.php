@@ -86,7 +86,6 @@ class ItemController extends Controller
 
         $item->title = $request->title;
         $item->description = $request->description;
-        $item->location = $request->location;
 
         $item->tags()->detach();
         foreach ($request->tags as $tagName) {
@@ -95,6 +94,14 @@ class ItemController extends Controller
         }
         $item->images()->saveMany(Image::whereIn('id', $request->images)->get());
         $item->save();
+
+
+        $location = $item->location;
+        $coords = $request->location['geometry']['location'];
+        $location->payload = $request->location;
+        $location->place_id = $request->location['place_id'];
+        $location->coordinate = new Point($coords['lat'], $coords['lng']);
+        $location->save();
 
         return $this->success('item.updated', ['title' => $item->title], $item);
     }

@@ -66,6 +66,7 @@ const update = async() => {
     ...item.value,
     images: images.value.map(i => i.id),
     tags: tags.value,
+    location: location.value,
   })
   useApi().$toast.show(response.data as ToastProps)
 
