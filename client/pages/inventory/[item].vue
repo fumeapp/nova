@@ -18,12 +18,13 @@ const images = ref<models.Image[]>([])
 const get = async() => {
   const response = await useApi().get<models.ItemResult>(`/item/${useRoute().params.item}`)
   item.value = response.data
+  location.value = item.value.location.payload
   tags.value = item.value.tags.map(t => t.name)
   images.value = item.value.images
-  location.value = item.value.location
 }
 
 if (!adding.value) onMounted(get)
+// if (!adding.value) onMounted(get)
 
 useCrumbs().set([
   { name: 'Inventory', to: '/inventory', icon: 'mdi:archive' },
@@ -100,7 +101,8 @@ const title = computed(() => adding.value ? 'Adding inventory.' : 'Updating inve
     <form-border>
       <client-only>
         <form-input-location
-          v-model="location" label="Location" required
+          v-if="adding || location" v-model="location" label="Location"
+          required
         />
       </client-only>
       <form-input

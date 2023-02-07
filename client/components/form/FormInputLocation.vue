@@ -3,24 +3,7 @@
 import { PropType } from 'vue'
 
 const apiKey = 'AIzaSyCA07GS1boV0NCnZHFUjCNZEdiVQnYJ1aE'
-
-const load = () => {
-  if (process.client) {
-    // Create the script tag, set the appropriate attributes
-    const script = document.createElement('script')
-    script.src = `https://maps.googleapis.com/maps/api/js?libraries=places&key=${apiKey}&callback=initMap`
-    script.async = true
-
-    // Attach your callback function to the `window` object
-    window.initMap = function() {
-      init()
-    }
-
-    // Append the 'script' element to 'head'
-    document.head.appendChild(script);
-  }
-}
-
+const loaded = ref(false)
 const props = defineProps({
   label: String,
   tip: String,
@@ -56,7 +39,7 @@ const init = (): void => {
     })
     autocomplete.addListener('place_changed', select)
 
-    if (props.modelValue) {
+    if (props.modelValue && props.modelValue.place_id) {
       const service = new google.maps.places.PlacesService(input.value)
       service.getDetails({ placeId: props.modelValue.place_id }, (placeResult, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -90,6 +73,24 @@ const clear = (): void => {
   place.value = undefined
   input.value = undefined
   emit('update:modelValue', null)
+}
+
+const load = () => {
+  if (process.client)
+
+    if (!loaded.value) {
+    // Create the script tag, set the appropriate attributes
+    const script = document.createElement('script')
+    script.src = `https://maps.googleapis.com/maps/api/js?libraries=places&key=${apiKey}&callback=initMap`
+    script.async = true
+
+    window.initMap = function() { init() }
+
+    // Append the 'script' element to 'head'
+    document.head.appendChild(script);
+    loaded.value = true
+  } else
+    init()
 }
 
 if (getCurrentInstance())
