@@ -20,9 +20,10 @@ const get = async() => {
   item.value = response.data
   tags.value = item.value.tags.map(t => t.name)
   images.value = item.value.images
+  location.value = item.value.location
 }
 
-if (!adding.value) await get()
+if (!adding.value) onMounted(get)
 
 useCrumbs().set([
   { name: 'Inventory', to: '/inventory', icon: 'mdi:archive' },

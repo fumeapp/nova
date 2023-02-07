@@ -48,9 +48,6 @@ class ItemController extends Controller
 
         $coords = $request->location['geometry']['location'];
 
-        ray($coords);
-        ray($request->location);
-
         $location = (new Location([
             'payload' => $request->location,
             'place_id' => $request->location['place_id'],
@@ -67,7 +64,7 @@ class ItemController extends Controller
      */
     public function show(Item $item): JsonResponse|Response
     {
-        return $this->render($item->load(['tags', 'images']));
+        return $this->render($item->load(['tags', 'images','location']));
     }
 
     /**

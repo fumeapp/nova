@@ -1,4 +1,4 @@
-import { Location } from '@/types/api'
+import { LocationPayload } from '@/types/api'
 export {}
 declare global {
   export namespace models {
@@ -28,10 +28,10 @@ declare global {
       user_id: number
       title: string
       description: string
-      location: Location|null
       created_at: Date|null
       updated_at: Date|null
       // relations
+      location: Location
       user: User
       images: Images
       tags: Tags
@@ -57,6 +57,24 @@ declare global {
     export interface LabelResult extends api.MetApiResults { data: Label }
     export interface LabelMetApiData extends api.MetApiData { data: Label }
     export interface LabelResponse extends api.MetApiResponse { data: LabelMetApiData }
+
+    export interface Location {
+      // columns
+      id: number
+      item_id: number|null
+      coordinate: unknown
+      payload: LocationPayload
+      place_id: string
+      created_at: Date|null
+      updated_at: Date|null
+      // relations
+      item: Item
+    }
+    export type Locations = Location[]
+    export interface LocationResults extends api.MetApiResults { data: Locations }
+    export interface LocationResult extends api.MetApiResults { data: Location }
+    export interface LocationMetApiData extends api.MetApiData { data: Location }
+    export interface LocationResponse extends api.MetApiResponse { data: LocationMetApiData }
 
     export interface Provider {
       // columns
