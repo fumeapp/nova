@@ -19,7 +19,7 @@ class ItemController extends Controller
      */
     public function index(): Response|JsonResponse
     {
-        return $this->render($this->paginate(Item::with('images', 'tags'), 10));
+        return $this->render($this->paginate(Item::with('images', 'tags', 'location'), 10));
         //
     }
 
