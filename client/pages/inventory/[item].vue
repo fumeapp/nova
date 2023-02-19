@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { PushButtonState, ToastProps } from 'tailvue'
+import { FormSelectOptions } from '~~/client/types/frontend'
 
 const adding = computed(() => useRoute().params.item === 'add')
 
@@ -14,6 +15,14 @@ const location = ref<undefined|google.maps.places.PlaceResult>(undefined)
 const tags = ref<string[]>([])
 const updateTags = (updated: string[]) => tags.value = updated
 const images = ref<models.Image[]>([])
+
+const statusOptions:FormSelectOptions = [
+  { value: 'created', name: 'Created' },
+  { value: 'available', name: 'Available' },
+  { value: 'requested', name: 'Requested' },
+  { value: 'approved', name: 'Approved' },
+  { value: 'delivered', name: 'Delivered' },
+]
 
 const get = async() => {
   const response = await useApi().get<models.ItemResult>(`/item/${useRoute().params.item}`)
@@ -100,6 +109,12 @@ const title = computed(() => adding.value ? 'Adding inventory.' : 'Updating inve
       <form-gallery-image-add @loading="setLoading" @add="addImage" />
     </div>
     <form-border>
+      <form-row class="mb-6" label="Status">
+        <form-select
+          v-model="item.status" class="mt-1" :options="statusOptions"
+          label="Status"
+        />
+      </form-row>
       <client-only>
         <form-input-location
           v-if="adding || location" v-model="location" label="Location"

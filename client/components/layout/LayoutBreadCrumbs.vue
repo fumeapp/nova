@@ -14,7 +14,6 @@ defineProps({nopadding: {type: Boolean, default: false}})
       >
         <ol class="flex items-center space-x-4 py-3">
           <transition-group
-            mode="out-in"
             enter-active-class="transition ease-out duration-200 delay-200"
             enter-from-class="transform -translate-x-2 opacity-0"
             enter-to-class="transform translate-x-0 opacity-100"

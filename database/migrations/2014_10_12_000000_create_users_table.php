@@ -45,8 +45,10 @@ class CreateUsersTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class, 'assigned_user_id')->nullable();
             $table->string('title');
             $table->string('description');
+            $table->string('status')->default('created');
             $table->timestamps();
         });
 

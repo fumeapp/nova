@@ -1,3 +1,12 @@
+export interface FormSelectOptionInterface {
+  name: string
+  value: string | number
+  image?: string,
+  initials?: string,
+  tip?: string,
+}
+export type FormSelectOptions = FormSelectOptionInterface[]
+
 export interface MenuItem {
   icon?: string
   name: string

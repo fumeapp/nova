@@ -57,6 +57,11 @@ class Item extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function assigned(): belongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_user_id');
+    }
+
 
     public function images(): hasMany
     {

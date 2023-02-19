@@ -31,12 +31,13 @@ class ItemController extends Controller
         $this
             ->option('title', 'required|string')
             ->option('description', 'required|string')
+            ->option('status', 'required|string')
             ->option('location', 'nullable')
             ->option('images', 'required|array')
             ->option('tags', 'required|array')
             ->verify();
 
-        $item = (new Item($request->only(['title', 'description'])))
+        $item = (new Item($request->only(['title', 'description', 'status'])))
             ->user()->associate(auth()->user());
 
         $item->save();
@@ -79,6 +80,7 @@ class ItemController extends Controller
         $this
             ->option('title', 'required|string')
             ->option('description', 'required|string')
+            ->option('status', 'required|string')
             ->option('location', 'nullable')
             ->option('images', 'required|array|min:1')
             ->option('tags', 'required|array')
@@ -86,6 +88,7 @@ class ItemController extends Controller
 
         $item->title = $request->title;
         $item->description = $request->description;
+        $item->status = $request->status;
 
         $item->tags()->detach();
         foreach ($request->tags as $tagName) {

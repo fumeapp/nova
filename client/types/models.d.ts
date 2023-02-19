@@ -26,13 +26,16 @@ declare global {
       // columns
       id: number
       user_id: number
+      assigned_user_id: number|null
       title: string
       description: string
+      status: string
       created_at: Date|null
       updated_at: Date|null
       // relations
       location: Location
       user: User
+      assigned: User
       images: Images
       tags: Tags
     }
