@@ -12,6 +12,7 @@
     "acidjazz/humble": "^3.0",
     "acidjazz/metapi": "^2.1",
     "composer/composer": "^2.2.1",
+    "doctrine/dbal": "^3.6",
     "google/apiclient": "^2.11",
     "guzzlehttp/guzzle": "^7.0.1",
     "laravel/framework": "^9.0",
